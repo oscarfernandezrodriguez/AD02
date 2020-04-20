@@ -30,9 +30,10 @@ public class Main {
             // TODO code application logic here
             f = gson.fromJson(new FileReader("franquicia.json"), Franquicia.class);
                     } catch (IOException e) {
-                        
-        } finally{
-            f=new Franquicia();
+             
+        } 
+        if(f==null) {
+       	 f=new Franquicia();
         }
             menu menu=new menu();
             menu.mostrar();

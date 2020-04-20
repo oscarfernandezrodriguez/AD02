@@ -48,9 +48,6 @@ public class Tenda {
         for (Producto productoO : this.productos) {
             if (productoO.getId().equals(id)) {
                 check = false;
-                if(parametro.equals("add")){
-                    System.out.println("Producto repetido!!!");
-                }
                 break;
             }
         }
@@ -80,12 +77,11 @@ public class Tenda {
         Main.pausa(1);
     }
 
-    public boolean checkEmpregado(String nome, String apelido) {
+    public boolean checkEmpregado(String nome, String apelido1, String apelido2) {
         boolean check = true;
         for (Empregado empregadoO : this.empregados) {
-            if (!empregadoO.getNome().equals(nome) && !empregadoO.getApelido().equals(apelido)) {
+            if (!empregadoO.getNome().equals(nome) && !empregadoO.getApelido1().equals(apelido1) && !empregadoO.getApelido2().equals(apelido2)) {
                 check = false;
-                System.out.println("O empregado non existe!!!");
                 break;
             }
         }
@@ -95,7 +91,7 @@ public class Tenda {
     public void addEmpregado(Empregado e) {
         int i ;
         for (i=0; i < this.empregados.size(); i++) {
-            if (empregados.get(i).getNome().equals(e.getNome())&&empregados.get(i).getApelido().equals(e.getApelido())) {
+            if (empregados.get(i).getNome().equals(e.getNome()) && empregados.get(i).getApelido1().equals(e.getApelido1()) && empregados.get(i).getApelido2().equals(e.getApelido2())) {
                 break;
             }
         }
@@ -105,10 +101,24 @@ public class Tenda {
         System.out.println(toString());
         Main.pausa(1);
     }
+    
+    public int orderEmpregado(Empregado e) {
+        int posicion = 0;
+        for (int i = 0; i < this.empregados.size(); i++) {
+            if (empregados.get(i).getNome().equals(e.getNome()) && empregados.get(i).getApelido1().equals(e.getApelido1()) && empregados.get(i).getApelido2().equals(e.getApelido2())) {
+                posicion = i;
+            }
+        }
+        return posicion;
+    }
 
-    public void removeEmpregado(Empregado e) {
-        this.empregados.remove(e);
+    public void removeEmpregado(int numEmp) {
+    	if(empregados.size()>0 && numEmp<= empregados.size()) {
+        this.empregados.remove(numEmp);
         System.out.println("Empregado eliminado!");
+    	}else {
+    		System.out.println("No existe dicho empleado!");
+    	}
         Main.pausa(1);
         System.out.println(toString());
         Main.pausa(1);

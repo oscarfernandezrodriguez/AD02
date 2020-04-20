@@ -31,14 +31,8 @@ public class Franquicia {
         for (Tenda tendaO : this.Tendas) {
             if (tendaO.getNome().equals(nome) && tendaO.getCidade().equals(cidade)) {
                 check = false;
-                if (parametro.equals("add")) {
-                    System.out.println("Tenda Repetida!!!");
-                }
                 break;
             }
-        }
-       if (parametro.equals("check") && check == true) {
-           System.out.println("Esa tenda non existe!!!");
         }
         return check;
     }
@@ -107,8 +101,8 @@ public class Franquicia {
         this.Tendas.get(posicion).removeProducto(producto);
     }
     
-    public boolean checkEmpregado(int posicion, String nomeE, String apelidoE) {
-        boolean check = this.Tendas.get(posicion).checkEmpregado(nomeE,apelidoE);
+    public boolean checkEmpregado(int posicion, String nomeE, String apelido1E,String apelido2E) {
+        boolean check = this.Tendas.get(posicion).checkEmpregado(nomeE,apelido1E,apelido2E);
         return check;
     }
 
@@ -116,7 +110,7 @@ public class Franquicia {
         this.Tendas.get(posicion).addEmpregado(empregado);
     }
 
-    public void removeEmpregado(int posicion, Empregado empregado) {
-        this.Tendas.get(posicion).removeEmpregado(empregado);
+    public void removeEmpregado(int posicion, int numEmp) {
+        this.Tendas.get(posicion).removeEmpregado(numEmp);
     }
 }
